@@ -27,7 +27,7 @@ def FunLogin(request):
       siswa = UserSiswa.objects.get(nik=request.POST['nik'], no_kk=request.POST['no_kk'])
       return render(request, 'register/index.html', {'siswa':siswa})
     else:
-      contex = {
+      context = {
         'msg' : 'salah ga cocok'
       }
       return render(request, 'login.html', context)
