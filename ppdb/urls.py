@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from ppdbpemkab.views import Home
+from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Home, name="index" ),
     path('home/', Home, name="index" ),
+    path('ppdb/', include('ppdbpemkab.urls')),
 ]
