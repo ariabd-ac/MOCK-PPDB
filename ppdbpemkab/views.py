@@ -18,9 +18,11 @@ def Index(request):
 
 def Register(request):
   if request.method == 'POST':
-    siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
-    siswa.save()
-    return redirect('/ppdb/zonasi')
+    # save user after input form
+    # siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
+    # siswa.save()
+    # mungkin setelah input nik & kk akan terdapat validasi,jika lolos maka lanjut isi form pendaftaran
+    return redirect('/ppdb/form')
   else:
     return render(request, 'register.html')
 
