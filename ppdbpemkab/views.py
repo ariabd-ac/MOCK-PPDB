@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, HttpResponseRedirect
+# from django.http import HttpResponse
+from .models import UserSiswa
 
 # Create your views here.
 
@@ -9,11 +10,30 @@ def Home(request):
 
 #domain/ppdb/
 def Index(request):
-  return render(request, 'index.html')
+  return render(request, 'register/index.html')
 
 
 def Register(request):
-  return render(request, 'register.html',)
+  if request.method == 'POST':
+    siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
+    siswa.save()
+    return redirect('/ppdb/zonasi')
+  else:
+    return render(request, 'register.html')
+
+def FunLogin(request):
+  if request.method == 'POST':
+    if UserSiswa.objects.filter(nik=request.POST['nik'], no_kk=request.POST['no_kk']).exists():
+      siswa = UserSiswa.objects.get(nik=request.POST['nik'], no_kk=request.POST['no_kk'])
+      return render(request, 'register/index.html', {'siswa':siswa})
+    else:
+      context = {
+        'msg' : 'salah ga cocok'
+      }
+      return render(request, 'login.html', context)
 
 def Login(request):
   return render(request, 'login.html')
+
+def Zonasi(request):
+  return render(request, 'zonasi.html')
