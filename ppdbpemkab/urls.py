@@ -8,4 +8,5 @@ urlpatterns=[
   path('fun/', views.FunLogin, name='fun'),
   path('zonasi/', views.Zonasi, name='zonasi'),
   path('', views.Index, name='index'),
+  path('form/', views.Form, name='form'),
 ]

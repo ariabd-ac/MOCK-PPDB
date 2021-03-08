@@ -8,6 +8,9 @@ def Home(request):
   return render(request, 'home.html')
 
 
+def Form(request):
+  return render(request, 'form.html')
+
 #domain/ppdb/
 def Index(request):
   return render(request, 'register/index.html')
