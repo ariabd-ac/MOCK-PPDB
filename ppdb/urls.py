@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path
 from ppdbpemkab.views import Home
 from django.urls import path, include
+from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', Home, name="index" ),
+    path('',views.index_redirect, name="index_redirect" ),
     path('home/', Home, name="index" ),
     path('ppdb/', include('ppdbpemkab.urls')),
 ]

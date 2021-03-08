@@ -2,5 +2,25 @@
 
 {% block content%}
 <h3>login </h3>
-
+<form method="POST" action="{% url 'fun' %}">
+  {% csrf_token %}
+  <div class="col-md-2">
+       <a href="{% url 'index' %}">Signup</a>
+  </div>
+  <div class="col-md-8">
+      <div class="form-group">
+          <label for="nik">nik</label>
+          <input type="text" name="nik" class="form-control" required="required"/>
+      </div>
+      <div class="form-group">
+          <label for="password">no kk</label>
+          <input type="text" name="no_kk" class="form-control" required="required"/>
+      </div>
+      <center><label class="text-danger">{{ msg }}</label></center>
+      <br />
+      <div class="form-group">
+          <button class="btn btn-primary form-control"><span class="glyphicon glyphicon-log-in"></span> Login</button>
+      </div>
+  </div>
+</form>
 {% endblock content%}
