@@ -21,7 +21,8 @@ from .import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',views.index_redirect, name="index_redirect" ),
+    # path('',views.index_redirect, name="index_redirect" ),
     path('home/', Home, name="index" ),
+    path('', Home, name="index" ),
     path('ppdb/', include('ppdbpemkab.urls')),
 ]
