@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 # from django.http import HttpResponse
 from .models import UserSiswa
+from .models import DataSiswa
 
 # Create your views here.
 
@@ -42,3 +43,8 @@ def Login(request):
 
 def Zonasi(request):
   return render(request, 'zonasi.html')
+
+def Pendaftar(request):
+  datasiswa_list=DataSiswa.objects.all()
+  data={'dataSiswa':datasiswa_list,'title':'judul'}
+  return render(request, 'pendaftar.html',data)

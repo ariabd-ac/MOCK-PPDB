@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div class="container">
+    <h2 class="h2">{{ title }}</h2>
+    <table class="table table-bordered">
+        <thead>
+            <th>NISN</th>
+            <th>Nama Siswa</th>
+            <th>Tempat,Tanggal Lahir</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% if data %}
+                {% for dt in dataSiswa %}
+                <tr>
+                    <td>{{ dt.nisn }}</td>
+                    <td>{{ dt.nama_lengkap }}</td>
+                    <td>{{ dt.tempat_lahir }}</td>
+                    <td>
+                        <button class="btn btn-primary">detail</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock content%}

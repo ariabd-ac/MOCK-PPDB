@@ -52,3 +52,6 @@ class DataSiswa(models.Model):
     kecamatan_wali_murid = models.CharField(max_length=200)
     kabupaten_wali_murid = models.CharField(max_length=200)
     provinsi_wali_murid = models.CharField(max_length=200)
+
+    def __str__(self):
+      return self.nisn
