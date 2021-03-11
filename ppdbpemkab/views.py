@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 
+from django.contrib.auth.models import User,Group
 from django.http import HttpResponse
 from .models import UserSiswa, DataSiswa
 from .forms import DataSiswaForm
@@ -59,6 +60,11 @@ def Register(request):
     # save user after input form
     # siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
     # siswa.save()
+    username=request.POST['nik']
+    user=User.objects.create_user(username,'',username)
+    # user.save()
+    groupSiswa=Group.objects.get(name='Siswa')
+    user.groups.add(groupSiswa)
     # mungkin setelah input nik & kk akan terdapat validasi,jika lolos maka lanjut isi form pendaftaran
     return redirect('/ppdb/form')
   else:

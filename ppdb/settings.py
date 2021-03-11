@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'ppdb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django_2',
+        'NAME': 'django_1',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
