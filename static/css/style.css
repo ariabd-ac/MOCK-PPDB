@@ -2,3 +2,34 @@
   margin: 0px;
   padding: 0px;
 }
+
+.sidebar{
+  float: left;
+  width: 20%;
+  background-color: #f8f9fa;
+  height: 100%;
+}
+
+.sidebar-menu{
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-menu-list{
+  padding: 5px;
+  border-bottom: 1px solid black;
+}
+.sidebar-menu-list:hover{
+  background-color: #343a40;
+  color:#f8f9fa ;
+}
+
+.sidebar-menu-list:hover a{
+  background-color: #343a40;
+  color:#8994a0 ;
+}
+
+.sidebar-menu-list a{
+  text-decoration: none;
+  color: #343a40;
+}

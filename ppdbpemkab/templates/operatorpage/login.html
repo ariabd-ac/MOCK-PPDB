@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content%}
+<div style="height: 94vh;display: flex;justify-content: center;align-items: center;">
+    <div class="card w-25">
+        <div class="card-header">
+            <h3>Operator Login </h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{% url 'operatorlogin' %}">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="nik">Username</label>
+                        <input type="text" name="username" class="form-control" required="required"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" class="form-control" required="required"/>
+                    </div>
+                    <center><label class="text-danger">{{ msg }}</label></center>
+                    <br />
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <button class="btn btn-primary form-control"><span class="glyphicon glyphicon-log-in"></span> Login</button>
+                    </div>
+              </form>        
+                </div>
+    </div>
+</div>
+
+
+{% endblock content%}

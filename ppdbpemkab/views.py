@@ -4,7 +4,7 @@ from django.contrib.auth.models import User,Group
 from django.http import HttpResponse
 from .models import UserSiswa, DataSiswa
 from .forms import DataSiswaForm
-
+from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 def Home(request):
@@ -92,6 +92,37 @@ def Zonasi(request):
 
 def Pendaftar(request):
   datasiswa_list=DataSiswa.objects.all()
+  
   data={'dataSiswa':datasiswa_list,'title':'judul'}
+  print(data)
   return render(request, 'pendaftar.html',data)
 
+
+# Operator Page
+def Operator(request):
+  if(request.user.groups.filter(name='Operator').exists()):
+    return render(request,'operatorpage/index.html')
+  else:
+    return redirect('/ppdb/operatorlogin')
+    
+def OperatorLogin(request):
+  if(request.method == 'POST'):
+    username=request.POST['username']
+    password=request.POST['password']
+    user=authenticate(username=username,password=password)
+    if(user is not None):
+      login(request,user)
+      print('masukk')
+      return redirect('/ppdb/operator')
+    else:
+      print(user)
+      context={'msg':'Kompbinasi Username dan Password Salah'}
+      return render(request,'operatorpage/login.html',context)
+  return render(request,'operatorpage/login.html')
+
+
+# end Operator Page
+
+def Logout(request):
+  logout(request)
+  return redirect('/ppdb/operator')
