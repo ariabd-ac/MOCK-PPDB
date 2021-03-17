@@ -64,16 +64,16 @@ class DataSiswa(models.Model):
       return self.nama_lengkap
 
 
-class DataSekolah:
+class DataSekolah(models.Model):
   kode_sekolah=models.CharField(max_length=200,blank=False,primary_key=True)
   nama=models.CharField(max_length=200,blank=False)
 
-class rfDocument:
+class rfDocument(models.Model):
   doc_code=models.CharField(max_length=20,blank=False,primary_key=True)
   desc=models.CharField(max_length=40,blank=True)
   is_mandatory=models.BooleanField(default=False,blank=True)
 
-class Document:
+class Document(models.Model):
   username=models.CharField(max_length=200)
   doc_code=models.CharField(max_length=200)
   no_document=models.CharField(max_length=200)
