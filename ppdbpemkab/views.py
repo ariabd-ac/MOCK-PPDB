@@ -71,15 +71,19 @@ def Register(request):
     return render(request, 'register.html')
 
 def FunLogin(request):
-  if request.method == 'POST':
-    if UserSiswa.objects.filter(nik=request.POST['nik'], no_kk=request.POST['no_kk']).exists():
-      siswa = UserSiswa.objects.get(nik=request.POST['nik'], no_kk=request.POST['no_kk'])
-      return render(request, 'register/index.html', {'siswa':siswa})
+  if(request.method == 'POST'):
+    username=request.POST['username']
+    password=request.POST['password']
+    user=authenticate(username=username,password=password)
+    if(user is not None):
+      login(request,user)
+      print('masukk')
+      return redirect('/ppdb/siswa')
     else:
-      context = {
-        'msg' : 'salah ga cocok'
-      }
-      return render(request, 'login.html', context)
+      print(user)
+      context={'msg':'Kompbinasi Username dan Password Salah'}
+      return render(request,'siswa/login.html',context)
+  return render(request,'siswa/login.html')
 
 def Login(request):
   return render(request, 'login.html')
@@ -101,9 +105,22 @@ def Pendaftar(request):
 # Operator Page
 def Operator(request):
   if(request.user.groups.filter(name='Operator').exists()):
-    return render(request,'operatorpage/index.html')
+    # print(request.GET['modul'] is None)
+    if(request.method == 'GET' and 'modul' in request.GET):
+      modulPage=request.GET['modul']
+      if(modulPage == 'datapendaftar'):
+        datasiswa_list=DataSiswa.objects.all()
+        data={'dataSiswa':datasiswa_list,'title':'Data Pendaftar'}
+      if(modulPage == 'jurnal'):
+        datasiswa_list=DataSiswa.objects.all()
+        data={'dataSiswa':datasiswa_list,'title':'Jurnal'}
+    else:
+      data={'title':'Selamat Datang Dihalaman Operator'}
+    return render(request,'operatorpage/index.html',data)
   else:
     return redirect('/ppdb/operatorlogin')
+
+    
     
 def OperatorLogin(request):
   if(request.method == 'POST'):

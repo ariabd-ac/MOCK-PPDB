@@ -18,18 +18,26 @@
           </div>
         </div>
       </nav>
-      <div class="sidebar" style="width: 200px;height: 100%;position: absolute;">
-          <ul class="sidebar-menu">
-            <li class="sidebar-menu-list">
-                <a href="/operator/pendaftar">Data Pendaftar</a>
-            </li>
-            <li class="sidebar-menu-list">
-                <a href="/operator/pendaftar">Jurnal</a>
-            </li>
-          </ul>
-      </div>
-        <div class="container float-right">
-            
+      <div class="row">
+        <div class="col-md-2">
+          <div class="sidebar">
+            <ul class="sidebar-menu">
+              <li class="sidebar-menu-list">
+                  <a href="/ppdb/operator?modul=datapendaftar">Data Pendaftar</a>
+              </li>
+              <li class="sidebar-menu-list">
+                  <a href="/ppdb/operator?modul=jurnal">Jurnal</a>
+              </li>
+            </ul>
+          </div>
         </div>
+        <div class="col-md-10">
+          <div class="container float-right">
+            {% include '../pendaftar.html' %}
+          </div>
+        </div>
+      </div>
+      
+        
 </div>
 {% endblock content%}

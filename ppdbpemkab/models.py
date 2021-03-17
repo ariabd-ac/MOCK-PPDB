@@ -37,10 +37,10 @@ class DataSiswa(models.Model):
     # pkh = models.FileField(upload_to='file/pkh/', blank=True)
     # kip = models.FileField(upload_to='file/kip/', blank=True)
     nama_ayah_kandung = models.CharField(max_length=200, blank=True)
-    agama_ayah_kandung = models.CharField(max_length=200, blank=True)
+    agama_ayah_kandung = models.CharField(max_length=200, blnuuank=True)
     pekerjaan_ayah_kandung = models.CharField(max_length=200, blank=True)
     nama_ibu_kandung = models.CharField(max_length=200, blank=True)
-    agama_ibu_kandung = models.CharField(max_length=200, blank=True)
+    agama_ibu_kandung = models.CharField(max_length=200, blank=True,null=True)
     pekerjaan_ibu_kandung = models.CharField(max_length=200, blank=True)
     alamat_orang_tua = models.CharField(max_length=200, blank=True)
     desa_orang_tua = models.CharField(max_length=200, blank=True)
@@ -62,3 +62,8 @@ class DataSiswa(models.Model):
 
     def __str__(self):
       return self.nama_lengkap
+
+
+class DataSekolah:
+  kode_sekolah=models.CharField(max_length=200,blank=False,primary_key=True)
+  nama=models.CharField(max_length=200,blank=False)
