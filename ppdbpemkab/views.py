@@ -23,7 +23,22 @@ def Pendaftar(request):
 
 # Siswa
 # function - function 
-def FunLogin(request):
+# def FunLogin(request):
+#   if(request.method == 'POST'):
+#     username=request.POST['username']
+#     password=request.POST['password']
+#     user=authenticate(username=username,password=password)
+#     if(user is not None):
+#       login(request,user)
+#       print('masukk')
+#       return redirect('/ppdb/siswa/dashboard')
+#     else:
+#       print(user)
+#       context={'msg':'Kompbinasi Username dan Password Salah'}
+#       return render(request,'login.html',context)
+#   return render(request,'login.html')
+
+def LoginSiswa(request):
   if(request.method == 'POST'):
     username=request.POST['username']
     password=request.POST['password']
@@ -35,8 +50,8 @@ def FunLogin(request):
     else:
       print(user)
       context={'msg':'Kompbinasi Username dan Password Salah'}
-      return render(request,'siswa/login.html',context)
-  return render(request,'siswa/login.html')
+      return render(request,'login.html',context)
+  return render(request,'login.html')
 
 
 def Register(request):
@@ -82,8 +97,10 @@ def Zonasi(request):
     return render(request, './jalur-pendaftaran/zonasi.html')
 
 def DashboardSiswa(request):
+  if(request.user.groups.filter(name='Siswa').exists()):
     return render(request, './siswa/dashboard.html')
-
+  else:
+    return redirect('/ppdb/login')
 
 
 

@@ -2,7 +2,7 @@
 
 {% block content%}
 <h3>login </h3>
-<form method="POST" action="{% url 'fun' %}">
+<form method="POST" action="{% url 'loginsiswa' %}">
   {% csrf_token %}
   <div class="col-md-2">
        <a href="{% url 'register' %}">Signup</a>
