@@ -1,7 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<a href="{% url 'register' %}">Registrasi</a>
-<a href="{% url 'login' %}">Login</a>
+<div class="container pt-4">
+  <div class="card">
+    <div class="card-header">
+      <h3>LOGIN / REGISTER </h3>
+    </div>
+    <div class="card-body">
+      <a href="{% url 'register' %}" class="btn btn-primary">Registrasi</a>
+      <a href="{% url 'login' %}" class="btn btn-danger">Login</a>
+    </div>
+  </div>
+</div>
+
 
 {% endblock content%}
