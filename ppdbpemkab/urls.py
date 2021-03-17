@@ -14,4 +14,8 @@ urlpatterns=[
   path('operator/', views.Operator, name='operator'),
   path('operatorlogin/', views.OperatorLogin, name='operatorlogin'),
   path('operator/logout', views.Logout, name='operatorlogout'),
+  path('siswa/dashboard', views.DashboardSiswa, name='dashboardsiswa'),
+
+  # siswa
+  path('siswa/dashboard', views.DashboardSiswa, name='dashboardsiswa'),
 ]

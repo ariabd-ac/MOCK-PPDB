@@ -10,49 +10,33 @@ from django.contrib.auth import authenticate,login,logout
 def Home(request):
   return render(request, 'home.html')
 
-
-# def Form(request):
-#   if request.method == 'POST':
-#     ds = DataSiswa(
-#                   nisn=request.POST['nisn'],
-#                   asal_sekolah=request.POST['asalSekolah'],
-#                   tahun_lulus=request.POST['tahunLulus'],
-#                   nama_lengkap=request.POST['namaLengkap'],
-#                   nik=request.POST['nik'],
-#                   tempat_lahir=request.POST['tempat_lahir'],
-#                   tanggal_lahir=request.POST['tanggal_lahir'],
-#                   email=request.POST['email'],
-#                   alamat=request.POST['alamat'],
-#                   desa=request.POST['desa'],
-#                   kecamatan=request.POST['kecamatan'],
-#                   kabupaten=request.POST['kabupaten'],
-#                   provinsi=request.POST['provinsi'],
-#                   )
-#     ds.save()
-#     # return render(request, 'form.html')
-#     return redirect('/')
-#   else:
-#     return render(request, 'form.html')
-
-def Form(request):
-  if request.method == 'POST':
-    form = DataSiswaForm(request.POST)
-    # print('posan: ', request.POST)
-    if form.is_valid():
-      form.save()
-      return redirect('/ppdb/jalur-pendaftaran')
-  else:
-    form = DataSiswaForm()
-  # context = {
-  #   'form' : form,
-  # }
-  return render(request, 'form.html', {
-    'form': form
-  })
-
 #domain/ppdb/
 def Index(request):
   return render(request, 'register/index.html')
+
+def Pendaftar(request):
+  datasiswa_list=DataSiswa.objects.all()
+  
+  data={'dataSiswa':datasiswa_list,'title':'judul'}
+  print(data)
+  return render(request, 'pendaftar.html',data)
+
+# Siswa
+# function - function 
+def FunLogin(request):
+  if(request.method == 'POST'):
+    username=request.POST['username']
+    password=request.POST['password']
+    user=authenticate(username=username,password=password)
+    if(user is not None):
+      login(request,user)
+      print('masukk')
+      return redirect('/ppdb/siswa/dashboard')
+    else:
+      print(user)
+      context={'msg':'Kompbinasi Username dan Password Salah'}
+      return render(request,'siswa/login.html',context)
+  return render(request,'siswa/login.html')
 
 
 def Register(request):
@@ -70,21 +54,24 @@ def Register(request):
   else:
     return render(request, 'register.html')
 
-def FunLogin(request):
-  if(request.method == 'POST'):
-    username=request.POST['username']
-    password=request.POST['password']
-    user=authenticate(username=username,password=password)
-    if(user is not None):
-      login(request,user)
-      print('masukk')
-      return redirect('/ppdb/siswa')
-    else:
-      print(user)
-      context={'msg':'Kompbinasi Username dan Password Salah'}
-      return render(request,'siswa/login.html',context)
-  return render(request,'siswa/login.html')
+def Form(request):
+  if request.method == 'POST':
+    form = DataSiswaForm(request.POST)
+    # print('posan: ', request.POST)
+    if form.is_valid():
+      form.save()
+      return redirect('/ppdb/jalur-pendaftaran')
+  else:
+    form = DataSiswaForm()
+  # context = {
+  #   'form' : form,
+  # }
+  return render(request, 'form.html', {
+    'form': form
+  })
 
+
+# login page
 def Login(request):
   return render(request, 'login.html')
 
@@ -94,12 +81,15 @@ def JalurPendaftaran(request):
 def Zonasi(request):
     return render(request, './jalur-pendaftaran/zonasi.html')
 
-def Pendaftar(request):
-  datasiswa_list=DataSiswa.objects.all()
-  
-  data={'dataSiswa':datasiswa_list,'title':'judul'}
-  print(data)
-  return render(request, 'pendaftar.html',data)
+def DashboardSiswa(request):
+    return render(request, './siswa/dashboard.html')
+
+
+
+
+
+
+
 
 
 # Operator Page

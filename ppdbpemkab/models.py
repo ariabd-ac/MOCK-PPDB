@@ -58,6 +58,7 @@ class DataSiswa(models.Model):
     kabupaten_wali_murid = models.CharField(max_length=200, blank=True)
     provinsi_wali_murid = models.CharField(max_length=200, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
+    
 
 
     def __str__(self):
