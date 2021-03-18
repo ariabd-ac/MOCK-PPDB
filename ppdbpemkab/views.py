@@ -46,7 +46,7 @@ def LoginSiswa(request):
     if(user is not None):
       login(request,user)
       print('masukk')
-      return redirect('/ppdb/siswa/dashboard')
+      return redirect('/ppdb/jalur-pendaftaran')
     else:
       print(user)
       context={'msg':'Kompbinasi Username dan Password Salah'}
@@ -85,13 +85,20 @@ def Form(request):
     'form': form
   })
 
+def SiswaLogout(request):
+  logout(request)
+  return redirect('/')
+
 
 # login page
 def Login(request):
   return render(request, 'login.html')
 
 def JalurPendaftaran(request):
-  return render(request, './jalur-pendaftaran/index.html')
+  if(request.user.groups.filter(name='Siswa').exists()):
+    return render(request, './jalur-pendaftaran/index.html')
+  else:
+    return redirect('/ppdb/login')
 
 def Zonasi(request):
     return render(request, './jalur-pendaftaran/zonasi.html')

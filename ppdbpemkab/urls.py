@@ -16,5 +16,7 @@ urlpatterns=[
   path('operator/logout', views.Logout, name='operatorlogout'),
   path('siswa/dashboard', views.DashboardSiswa, name='dashboardsiswa'),
   # siswa
+  
   path('siswa/dashboard', views.DashboardSiswa, name='dashboardsiswa'),
+  path('siswa/logout', views.SiswaLogout, name='siswalogout'),
 ]

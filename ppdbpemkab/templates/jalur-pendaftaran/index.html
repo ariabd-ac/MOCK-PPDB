@@ -1,8 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content%}
-<a href="#">ZONASI</a>
-<a href="#">AFIRMASI</a>
-<a href="#">PERPINDAHAN ORTU</a>
-<a href="#">PRESTASI</a>
+<div class="container">
+  <div class="" style="display: flex;flex-direction: column; height: 100vh; align-items: center; justify-content: center;"> 
+    <h3 style="text-align: center;">Silahkan Pilih Jalur pendaftaran</h3>
+    <div class="" style="flex-direction: row; display: flex;">
+    <div class="" style="padding: 20px;">
+      <div class="card" style="margin-bottom: 20px;">
+        <a href="{% url 'dashboardsiswa' %}" class="btn btn-primary">ZONASI</a>
+      </div>
+      <div class="card">
+        <a href="#" class="btn btn-danger">AFIRMASI</a>
+      </div>
+    </div>
+    <div class="" style="padding: 20px;">
+      <div class="card" style="margin-bottom: 20px;">
+        <a href="#" class="btn btn-secondary">PERPINDAHAN ORTU</a>
+      </div>
+      <div class="card">
+        <a href="#" class="btn btn-info">PRESTASI</a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
 {% endblock content%}
