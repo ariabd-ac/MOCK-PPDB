@@ -55,19 +55,24 @@ def LoginSiswa(request):
 
 
 def Register(request):
-  if request.method == 'POST':
-    # save user after input form
-    # siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
-    # siswa.save()
-    username=request.POST['nik']
-    user=User.objects.create_user(username,'',username)
-    # user.save()
-    groupSiswa=Group.objects.get(name='Siswa')
-    user.groups.add(groupSiswa)
-    # mungkin setelah input nik & kk akan terdapat validasi,jika lolos maka lanjut isi form pendaftaran
-    return redirect('/ppdb/form')
+  if(request.user.groups.filter(name='Siswa').exists()):
+    return render(request, './siswa/dashboard.html')
   else:
-    return render(request, 'register.html')
+    # return render(request, 'register.html')
+    if request.method == 'POST':
+      # save user after input form
+      # siswa = UserSiswa(nik=request.POST['nik'],no_kk=request.POST['no_kk'])
+      # siswa.save()
+      username=request.POST['nik']
+      user=User.objects.create_user(username,'',username)
+      # user.save()
+      groupSiswa=Group.objects.get(name='Siswa')
+      user.groups.add(groupSiswa)
+      # mungkin setelah input nik & kk akan terdapat validasi,jika lolos maka lanjut isi form pendaftaran
+      return redirect('/ppdb/form')
+    else:
+      return render(request, 'register.html')
+      # return redirect('/ppdb/register')
 
 def Form(request):
   if request.method == 'POST':
@@ -92,7 +97,11 @@ def SiswaLogout(request):
 
 # login page
 def Login(request):
-  return render(request, 'login.html')
+  if(request.user.groups.filter(name='Siswa').exists()):
+    return render(request, './siswa/dashboard.html')
+  else:
+    return render(request, 'login.html')
+  # return render(request, 'login.html')
 
 def JalurPendaftaran(request):
   if(request.user.groups.filter(name='Siswa').exists()):
